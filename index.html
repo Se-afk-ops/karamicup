@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARAMICUP – Le micro de Kara</title>
+    <meta name="description" content="KARAMICUP, média digital de terrain à Kara : micro-trottoir, promotion d'événements et vidéo sur mesure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --noir: #000;
+            --encre: #0e0e0e;
+            --jaune: #f7e51b;
+            --blanc: #fff;
+            --gris: #bdbdbd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--blanc);
+            background: var(--noir);
+        }
+        
+        h1,
+        h2,
+        h3,
+        .marque,
+        .btn,
+        nav a,
+        .defile {
+            font-family: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+        }
+        
+        a {
+            color: inherit;
+        }
+        
+         :focus-visible {
+            outline: 3px solid var(--jaune);
+            outline-offset: 3px;
+        }
+        
+        .conteneur {
+            width: min(1120px, 100% - 40px);
+            margin-inline: auto;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(0, 0, 0, .92);
+            backdrop-filter: blur(8px);
+        }
+        
+        header .conteneur {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-block: 14px;
+            flex-wrap: wrap;
+        }
+        
+        .marque {
+            font-weight: 800;
+            font-size: 1.35rem;
+            text-decoration: none;
+        }
+        
+        .marque b {
+            color: var(--jaune);
+            font-weight: 800;
+        }
+        
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: var(--jaune);
+        }
+        
+        nav .nav-cta {
+            background: var(--jaune);
+            color: var(--noir);
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-weight: 800;
+        }
+        
+        nav .nav-cta:hover {
+            background: var(--blanc);
+            color: var(--noir);
+        }
+        /* Hero */
+        
+        .hero {
+            position: relative;
+            padding-block: clamp(40px, 8vw, 90px) clamp(48px, 8vw, 90px);
+            overflow: hidden;
+        }
+        
+        .hero .conteneur {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.8rem, 8.5vw, 6.4rem);
+            line-height: .95;
+            font-weight: 800;
+            letter-spacing: -.035em;
+        }
+        
+        .hero h1 .jaune {
+            color: var(--jaune);
+        }
+        
+        .hero p {
+            margin-top: 24px;
+            max-width: 29em;
+            color: var(--gris);
+            font-size: 1.2rem;
+        }
+        
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 999px;
+            font-weight: 800;
+            text-decoration: none;
+            border: 2px solid var(--jaune);
+            transition: background .2s, color .2s;
+        }
+        
+        .btn-plein {
+            background: var(--jaune);
+            color: var(--noir);
+        }
+        
+        .btn-plein:hover {
+            background: var(--blanc);
+            border-color: var(--blanc);
+        }
+        
+        .btn-vide {
+            color: var(--jaune);
+        }
+        
+        .btn-vide:hover {
+            background: var(--jaune);
+            color: var(--noir);
+        }
+        
+        .logo {
+            width: 100%;
+            height: auto;
+            display: block;
+            mix-blend-mode: lighten;
+        }
+        /* Bandeau défilant : seul mouvement de la page */
+        
+        .defile {
+            background: var(--jaune);
+            color: var(--noir);
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 800;
+            font-size: 1.5rem;
+            padding-block: 14px;
+        }
+        
+        .defile div {
+            display: inline-block;
+            padding-left: 100%;
+            animation: defile 28s linear infinite;
+        }
+        
+        @keyframes defile {
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        
+        section {
+            padding-block: clamp(56px, 9vw, 100px);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -.025em;
+            max-width: 15em;
+        }
+        
+        .intro {
+            margin-top: 14px;
+            color: var(--gris);
+            max-width: 34em;
+        }
+        /* Vidéos verticales */
+        
+        .videos {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        
+        .video {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            aspect-ratio: 9/14;
+            padding: 22px;
+            border-radius: 24px;
+            overflow: hidden;
+            text-decoration: none;
+            background: linear-gradient(160deg, #242424, #050505);
+            border: 1px solid #2a2a2a;
+        }
+        
+        .video:hover {
+            border-color: var(--jaune);
+        }
+        
+        .video::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 74px;
+            height: 74px;
+            margin: -37px 0 0 -37px;
+            border-radius: 50%;
+            background: var(--jaune);
+        }
+        
+        .video::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -14px 0 0 -9px;
+            border-left: 24px solid var(--noir);
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+        }
+        
+        .video span {
+            position: relative;
+            font-family: "Bricolage Grotesque", Arial, sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            line-height: 1.25;
+        }
+        /* Offres en bulles */
+        
+        .offres-bloc {
+            background: var(--jaune);
+            color: var(--noir);
+        }
+        
+        .offres {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .offre {
+            background: var(--noir);
+            color: var(--blanc);
+            padding: 30px;
+            border-radius: 30px 30px 30px 0;
+        }
+        
+        .offre h3 {
+            color: var(--jaune);
+            font-size: 1.45rem;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+        
+        .offre p {
+            color: var(--gris);
+        }
+        /* Entrepreneurs */
+        
+        .entrepreneurs .conteneur {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .etapes {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .etape {
+            background: var(--encre);
+            border: 1px solid #2a2a2a;
+            border-radius: 24px 24px 24px 0;
+            padding: 22px 26px;
+        }
+        
+        .etape strong {
+            display: block;
+            font-family: "Bricolage Grotesque", Arial, sans-serif;
+            color: var(--jaune);
+            font-size: 1.2rem;
+        }
+        /* Contact */
+        
+        .contact {
+            background: var(--blanc);
+            color: var(--noir);
+        }
+        
+        .contact .conteneur {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .contact .intro {
+            color: #444;
+        }
+        
+        .liens {
+            display: grid;
+            gap: 14px;
+        }
+        
+        .liens a {
+            display: block;
+            padding: 18px 26px;
+            background: var(--noir);
+            color: var(--blanc);
+            border-radius: 26px 26px 26px 0;
+            text-decoration: none;
+            font-family: "Bricolage Grotesque", Arial, sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        
+        .liens a:hover {
+            background: var(--jaune);
+            color: var(--noir);
+        }
+        
+        .liens small {
+            display: block;
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            opacity: .8;
+        }
+        
+        footer {
+            padding-block: 28px;
+            color: var(--gris);
+            font-size: .95rem;
+        }
+        
+        @media (max-width:800px) {
+            nav a:not(.nav-cta) {
+                display: none;
+            }
+            .hero .conteneur,
+            .entrepreneurs .conteneur,
+            .contact .conteneur,
+            .offres,
+            .videos {
+                grid-template-columns: 1fr;
+            }
+            .logo {
+                max-width: 340px;
+            }
+            .video {
+                aspect-ratio: 16/11;
+            }
+        }
+        
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .defile div {
+                animation: none;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="conteneur">
+            <a class="marque" href="#accueil">KARA<b>MICUP</b></a>
+            <nav aria-label="Navigation principale">
+                <a href="#videos">Vidéos</a>
+                <a href="#offres">Services</a>
+                <a href="#entrepreneurs">Entrepreneurs</a>
+                <a class="nav-cta" href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="accueil">
+        <div class="hero">
+            <div class="conteneur">
+                <div>
+                    <h1>Kara a la parole. <span class="jaune">On tend le micro.</span></h1>
+                    <p>KARAMICUP est le média digital de terrain de Kara. Des questions posées dans la rue, des réponses sans filtre, des événements et des entrepreneurs de chez nous, en vidéo.</p>
+                    <div class="actions">
+                        <!-- Remplacez # par le lien de votre compte TikTok -->
+                        <a class="btn btn-plein" href="#" target="_blank" rel="noopener">Regarder sur TikTok</a>
+                        <a class="btn btn-vide" href="#contact">Travailler avec nous</a>
+                    </div>
+                </div>
+                <img class="logo" src="logo.jpg" alt="Logo KARAMICUP">
+            </div>
+        </div>
+
+        <div class="defile" aria-hidden="true">
+            <div>Micro-trottoir &nbsp;•&nbsp; Événements &nbsp;•&nbsp; Entrepreneurs &nbsp;•&nbsp; Vidéo sur mesure &nbsp;•&nbsp; Kara, Togo &nbsp;•&nbsp; Micro-trottoir &nbsp;•&nbsp; Événements &nbsp;•&nbsp; Entrepreneurs &nbsp;•&nbsp; Vidéo sur mesure &nbsp;•&nbsp;
+                Kara, Togo</div>
+        </div>
+
+        <section id="videos">
+            <div class="conteneur">
+                <h2>Sur le terrain, avec les gens de Kara</h2>
+                <p class="intro">Une question, un micro, la rue. Voici quelques-unes de nos vidéos.</p>
+                <div class="videos">
+                    <!-- Remplacez chaque # par le lien de la vidéo TikTok et le titre par le vôtre -->
+                    <a class="video" href="#" target="_blank" rel="noopener"><span>Titre de votre vidéo n°1</span></a>
+                    <a class="video" href="#" target="_blank" rel="noopener"><span>Titre de votre vidéo n°2</span></a>
+                    <a class="video" href="#" target="_blank" rel="noopener"><span>Titre de votre vidéo n°3</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="offres" class="offres-bloc">
+            <div class="conteneur">
+                <h2>Ce qu'on fait pour vous</h2>
+                <div class="offres">
+                    <div class="offre">
+                        <h3>Micro-trottoir</h3>
+                        <p>On pose votre question aux habitants de Kara et on ramène leurs vraies réponses, en vidéo.</p>
+                    </div>
+                    <div class="offre">
+                        <h3>Promotion d'événements</h3>
+                        <p>Concerts, forums, salons : on filme l'avant, le pendant et l'après pour que votre événement circule en ligne.</p>
+                    </div>
+                    <div class="offre">
+                        <h3>Vidéo sur mesure</h3>
+                        <p>Spots publicitaires et reportages courts, tournés et montés pour les réseaux sociaux.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="entrepreneurs" class="entrepreneurs">
+            <div class="conteneur">
+                <div>
+                    <h2>Une activité à Kara ? Passez devant le micro.</h2>
+                    <p class="intro">Faites connaître votre entreprise à l'audience de KARAMICUP.</p>
+                </div>
+                <div class="etapes">
+                    <div class="etape"><strong>On vous présente</strong>Votre activité, vos produits, votre histoire.</div>
+                    <div class="etape"><strong>On vient chez vous</strong>Le tournage se fait sur votre lieu de travail.</div>
+                    <div class="etape"><strong>On publie</strong>Votre vidéo est diffusée sur KARAMICUP.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="conteneur">
+                <div>
+                    <h2>Parlons de votre projet</h2>
+                    <p class="intro">Un événement à couvrir, une vidéo à tourner, une activité à présenter : écrivez-nous et on vous répond.</p>
+                </div>
+                <div class="liens">
+                    <!-- Remplacez les # et les numéros par vos vrais liens -->
+                    <a href="#" target="_blank" rel="noopener">TikTok<small>@votre_compte</small></a>
+                    <a href="https://wa.me/228XXXXXXXX" target="_blank" rel="noopener">WhatsApp<small>+228 XX XX XX XX</small></a>
+                    <a href="mailto:contact@exemple.com">E-mail<small>contact@exemple.com</small></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="conteneur">© 2026 KARAMICUP. Kara, Togo.</div>
+    </footer>
+
+</body>
+
+</html>

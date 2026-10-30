@@ -1,0 +1,22 @@
+name: Deploy KARAMICUP (runner local)
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image
+        shell: cmd
+        run: docker build -t karamicup-local .
+
+      - name: Restart container
+        shell: cmd
+        run: |
+          docker rm -f karamicup 2>nul || ver >nul
+          docker run -d --name karamicup -p 8080:80 --restart unless-stopped karamicup-local
